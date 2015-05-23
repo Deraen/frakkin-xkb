@@ -1,4 +1,4 @@
-# Frakking-XKB
+# Frakkin-XKB
 
 For some reason in Ubuntu or Xorg in general it is somehow quite hard to
 reliably configure custom XKB keymaps.
@@ -29,7 +29,7 @@ to set the default options, overwriting our options.
 
 ### Solution
 
-Call xkbcomp from `.xsession` and using `frakking-xkb`:
+Call xkbcomp from `.xsession` and using `frakkin-xkb`:
 
 xkblayout.sh:
 ```bash
@@ -38,7 +38,7 @@ xkbcomp -I"$HOME/.xkb" "$HOME/.xkb/keymap/default" "${DISPLAY%%.*}"
 ```
 
 ```bash
-$ frakking-xkb -t 1000 xkblayout.sh
+$ frakkin-xkb -t 1000 xkblayout.sh
 ```
 
 You will probably need to use timeout of around 1000 milliseconds to allow
