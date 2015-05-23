@@ -37,8 +37,10 @@ xkblayout.sh:
 xkbcomp -I"$HOME/.xkb" "$HOME/.xkb/keymap/default" "${DISPLAY%%.*}"
 ```
 
+.xsession:
 ```bash
-$ frakkin-xkb -t 1000 xkblayout.sh
+xkblayout.sh
+frakkin-xkb -t 1000 xkblayout.sh
 ```
 
 You will probably need to use timeout of around 1000 milliseconds to allow
