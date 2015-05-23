@@ -20,6 +20,9 @@ This trigger a udev rule which sets some variables which are then used by
 Xorg evdev driver. Problem is that using custom XKB rules with this will
 require editing files in `/usr/share`.
 
+Also LightDM tries it's best to mess up the keyboard layout, but this
+should be fixable with `~/.Xkbmap`.
+
 #### Using udev rule to call xkbcomp
 
 Xkbcomp needs to run as user running the X session, this requires some
