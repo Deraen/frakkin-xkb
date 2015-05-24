@@ -86,7 +86,7 @@ Run COMMAND when a input device is plugged into the system.\n\
         const char* node = udev_device_get_devnode(dev);
 
         if ((strncmp(act, "add", 3) == 0 || strncmp(act, "modify", 6) == 0)
-            && strncmp(key, "1", 1) == 0
+            && key != NULL
             && node == NULL)
         {
           if (timeout > 0) {
