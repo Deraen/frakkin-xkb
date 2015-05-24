@@ -16,7 +16,8 @@ int main (int argc, char** argv)
     {"timeout", required_argument, 0, 't'}
   };
 
-  while (1) {
+  while (1)
+  {
     int i = 0;
     int c = getopt_long(argc, argv, "t:", long_options, &i);
 
@@ -29,11 +30,13 @@ int main (int argc, char** argv)
     }
   }
 
-  if (optind < argc) {
+  if (optind < argc)
+  {
     command = argv[optind];
   }
 
-  if (help > 0) {
+  if (help > 0)
+  {
     printf("\
 Usage: %s [OPTION] COMMAND\n\
 Run COMMAND when a input device is plugged into the system.\n\
@@ -45,7 +48,8 @@ Run COMMAND when a input device is plugged into the system.\n\
     exit(0);
   }
 
-  if (command == NULL) {
+  if (command == NULL)
+  {
     printf("Missing command option");
     exit(1);
   }
@@ -57,7 +61,8 @@ Run COMMAND when a input device is plugged into the system.\n\
   int fd;
 
   udev = udev_new();
-  if (!udev) {
+  if (!udev)
+  {
     printf("Can't create udev\n");
     exit(1);
   }
@@ -67,7 +72,8 @@ Run COMMAND when a input device is plugged into the system.\n\
   udev_monitor_enable_receiving(mon);
   fd = udev_monitor_get_fd(mon);
 
-  while (1) {
+  while (1)
+  {
     fd_set fds;
     int ret;
 
@@ -77,9 +83,11 @@ Run COMMAND when a input device is plugged into the system.\n\
     // Last param is timeout, NULL = forever
     ret = select(fd+1, &fds, NULL, NULL, NULL);
 
-    if (ret > 0 && FD_ISSET(fd, &fds)) {
+    if (ret > 0 && FD_ISSET(fd, &fds))
+    {
       dev = udev_monitor_receive_device(mon);
-      if (dev) {
+      if (dev)
+      {
         const char* act = udev_device_get_action(dev);
         const char* key = udev_device_get_property_value(dev, "ID_INPUT_KEY");
         // Two events are generated, other has node value set and other doesn't
@@ -89,14 +97,16 @@ Run COMMAND when a input device is plugged into the system.\n\
             && key != NULL
             && node == NULL)
         {
-          if (timeout > 0) {
+          if (timeout > 0)
+          {
             usleep(timeout * 1000);
           }
           system(command);
         }
         udev_device_unref(dev);
       }
-      else {
+      else
+      {
         printf("No Device from receive_device(). An error occured.\n");
       }
     }
