@@ -85,7 +85,7 @@ Run COMMAND when a input device is plugged into the system.\n\
         // Two events are generated, other has node value set and other doesn't
         const char* node = udev_device_get_devnode(dev);
 
-        if ((strncmp(act, "add", 3) == 0 || strncmp(act, "modify", 6) == 0)
+        if ((strcmp(act, "add") == 0 || strcmp(act, "modify") == 0)
             && key != NULL
             && node == NULL)
         {
