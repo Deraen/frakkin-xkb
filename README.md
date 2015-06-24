@@ -43,8 +43,7 @@ xkbcomp -I"$HOME/.xkb" "$HOME/.xkb/keymap/default" "${DISPLAY%%.*}"
 .xsession:
 ```bash
 xkblayout.sh
-frakkin-xkb -t 1000 xkblayout.sh
+frakkin-xkb xkblayout.sh
 ```
 
-You will probably need to use timeout of around 1000 milliseconds to allow
-Xorg to register the input.
+Frakkin-xkb listens for XInput events and when new devices are adeed, calls the given command.
